@@ -4303,3 +4303,40 @@ body {
         color: #fff;
     }
 }
+
+@media (max-width: 768px) {
+    .mobile-dropdown-menu .auth-btn-nav {
+        width: 100%;
+        justify-content: center;
+        font-size: 1.1rem;
+        padding: 1rem 0;
+        margin-top: 1rem;
+        border-radius: 10px;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(212,175,55,0.07);
+        transition: background 0.18s, color 0.18s, border 0.18s;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+    }
+    .mobile-dropdown-menu .login-btn {
+        background: #fff;
+        color: var(--primary-gold);
+        border: 2px solid var(--primary-gold);
+        margin-bottom: 0.7rem;
+    }
+    .mobile-dropdown-menu .login-btn:hover {
+        background: var(--primary-gold);
+        color: #fff;
+    }
+    .mobile-dropdown-menu .signup-btn {
+        background: var(--primary-gold);
+        color: #fff;
+        border: 2px solid var(--primary-gold);
+    }
+    .mobile-dropdown-menu .signup-btn:hover {
+        background: var(--secondary-gold);
+        border-color: var(--secondary-gold);
+        color: #fff;
+    }
+}
