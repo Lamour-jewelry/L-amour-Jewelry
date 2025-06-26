@@ -1728,67 +1728,61 @@ document.addEventListener('DOMContentLoaded', () => {
     window.lamour = new LamourJewelry();
     console.log('LamourJewelry instance created and assigned to window.lamour');
 
-    // Mobile menu overlay logic
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links .nav-link');
-    const body = document.body;
-
-    function openMobileMenu() {
-        mobileMenuOverlay.classList.add('active');
-        body.style.overflow = 'hidden';
-    }
-    function closeMobileMenu() {
-        mobileMenuOverlay.classList.remove('active');
-        body.style.overflow = '';
-    }
-
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', openMobileMenu);
-    }
-    if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
-    }
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    // Close overlay if clicking outside content (optional, not needed for full overlay)
-    mobileMenuOverlay.addEventListener('click', function(e) {
-        if (e.target === mobileMenuOverlay) {
-            closeMobileMenu();
-        }
-    });
-
-    // Forward mobile auth button clicks to main auth logic
-    const mobileGoogleBtn = document.getElementById('mobile-google-auth-btn');
+    // Mobile dropdown menu logic
+    const mobileDropdownToggle = document.getElementById('mobile-dropdown-toggle');
+    const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-dropdown-menu .nav-link');
     const mobileSignupBtn = document.getElementById('mobile-signup-btn');
     const mobileLoginBtn = document.getElementById('mobile-login-btn');
-    const googleBtn = document.getElementById('google-auth-btn');
     const signupBtn = document.getElementById('signup-btn');
     const loginBtn = document.getElementById('login-btn');
 
-    if (mobileGoogleBtn && googleBtn) {
-        mobileGoogleBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileMenu();
-            googleBtn.click();
+    function closeMobileDropdown() {
+        if (mobileDropdownMenu) mobileDropdownMenu.classList.remove('active');
+    }
+    function openMobileDropdown() {
+        if (mobileDropdownMenu) mobileDropdownMenu.classList.add('active');
+    }
+    function toggleMobileDropdown() {
+        if (mobileDropdownMenu) mobileDropdownMenu.classList.toggle('active');
+    }
+
+    if (mobileDropdownToggle) {
+        mobileDropdownToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileDropdown();
         });
     }
+    // Close dropdown when clicking a link or auth button
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileDropdown);
+    });
     if (mobileSignupBtn && signupBtn) {
         mobileSignupBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            closeMobileMenu();
+            closeMobileDropdown();
             signupBtn.click();
         });
     }
     if (mobileLoginBtn && loginBtn) {
         mobileLoginBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            closeMobileMenu();
+            closeMobileDropdown();
             loginBtn.click();
         });
     }
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && mobileDropdownMenu && mobileDropdownMenu.classList.contains('active')) {
+            if (!mobileDropdownMenu.contains(e.target) && e.target !== mobileDropdownToggle) {
+                closeMobileDropdown();
+            }
+        }
+    });
+    // Optional: close on resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) closeMobileDropdown();
+    });
 });
 
 // Add CSS for confetti animation

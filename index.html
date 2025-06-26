@@ -96,31 +96,22 @@
                 <a href="index.html" class="brand-logo">L'amour</a>
                 <span class="brand-tagline">Jewelry that speaks your heart</span>
             </div>
-            
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#shop" class="nav-link">Shop</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            
             <div class="nav-actions">
                 <a href="#cart" class="cart-icon" id="cart-icon">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cart-count">0</span>
                 </a>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="auth-btn-nav google-btn" id="google-auth-btn">
+                    <i class="fab fa-google"></i>
+                    <span>Continue with Google</span>
+                </button>
+                <button class="mobile-dropdown-toggle" id="mobile-dropdown-toggle" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
-            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
-                <i class="fas fa-times"></i>
-            </button>
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-dropdown-menu" id="mobile-dropdown-menu">
             <div class="mobile-menu-links">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#shop" class="nav-link">Shop</a>
@@ -128,10 +119,6 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="mobile-auth-buttons">
-                <button class="auth-btn-nav google-btn" id="mobile-google-auth-btn">
-                    <i class="fab fa-google"></i>
-                    <span>Continue with Google</span>
-                </button>
                 <button class="auth-btn-nav signup-btn" id="mobile-signup-btn">
                     <i class="fas fa-user-plus"></i>
                     <span>Sign Up</span>
@@ -141,6 +128,22 @@
                     <span>Login</span>
                 </button>
             </div>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#shop" class="nav-link">Shop</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="auth-buttons">
+            <button class="auth-btn-nav signup-btn" id="signup-btn">
+                <i class="fas fa-user-plus"></i>
+                <span>Sign Up</span>
+            </button>
+            <button class="auth-btn-nav login-btn" id="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </button>
         </div>
     </nav>
 
