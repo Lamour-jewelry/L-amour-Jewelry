@@ -492,4 +492,9 @@ export class FirebaseService {
 const firebaseService = new FirebaseService();
 
 // Export for global access
-window.firebaseService = firebaseService; 
+window.firebaseService = firebaseService;
+
+export async function saveCheckoutDetails(details) {
+    const docRef = await addDoc(collection(db, 'checkouts'), details);
+    return docRef.id;
+} 

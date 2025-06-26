@@ -569,10 +569,13 @@ class LamourJewelry {
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
                 const target = link.getAttribute('href');
-                this.scrollToSection(target);
-                this.updateActiveNavLink(link);
+                if (target && target.startsWith('#')) {
+                    e.preventDefault();
+                    this.scrollToSection(target);
+                    this.updateActiveNavLink(link);
+                }
+                // Otherwise, let the browser handle navigation
             });
         });
 
@@ -1272,9 +1275,10 @@ class LamourJewelry {
             this.showToast('Your cart is empty!', 'error');
             return;
         }
-        
         this.showToast('Redirecting to checkout...', 'info');
-        // Add checkout logic here
+        setTimeout(() => {
+            window.location.href = 'checkout.html';
+        }, 1000);
     }
 
     // Scroll Effects
@@ -1657,12 +1661,6 @@ class LamourJewelry {
 
     // Setup Auth Event Listeners
     setupAuthEventListeners() {
-        // Google auth button
-        const googleAuthBtn = document.getElementById('google-auth-btn');
-        if (googleAuthBtn) {
-            googleAuthBtn.addEventListener('click', () => this.signInWithGoogle());
-        }
-
         // Signup button
         const signupBtn = document.getElementById('signup-btn');
         if (signupBtn) {
