@@ -1732,16 +1732,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileDropdownToggle = document.getElementById('mobile-dropdown-toggle');
     const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
     const mobileMenuLinks = document.querySelectorAll('.mobile-dropdown-menu .nav-link');
-    const mobileSignupBtn = document.getElementById('mobile-signup-btn');
-    const mobileLoginBtn = document.getElementById('mobile-login-btn');
-    const signupBtn = document.getElementById('signup-btn');
-    const loginBtn = document.getElementById('login-btn');
 
     function closeMobileDropdown() {
         if (mobileDropdownMenu) mobileDropdownMenu.classList.remove('active');
-    }
-    function openMobileDropdown() {
-        if (mobileDropdownMenu) mobileDropdownMenu.classList.add('active');
     }
     function toggleMobileDropdown() {
         if (mobileDropdownMenu) mobileDropdownMenu.classList.toggle('active');
@@ -1753,24 +1746,10 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMobileDropdown();
         });
     }
-    // Close dropdown when clicking a link or auth button
+    // Close dropdown when clicking a link
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', closeMobileDropdown);
     });
-    if (mobileSignupBtn && signupBtn) {
-        mobileSignupBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileDropdown();
-            signupBtn.click();
-        });
-    }
-    if (mobileLoginBtn && loginBtn) {
-        mobileLoginBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            closeMobileDropdown();
-            loginBtn.click();
-        });
-    }
     // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
         if (window.innerWidth <= 768 && mobileDropdownMenu && mobileDropdownMenu.classList.contains('active')) {
