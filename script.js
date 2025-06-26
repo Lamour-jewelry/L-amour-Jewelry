@@ -1727,6 +1727,68 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, creating LamourJewelry instance...');
     window.lamour = new LamourJewelry();
     console.log('LamourJewelry instance created and assigned to window.lamour');
+
+    // Mobile menu overlay logic
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links .nav-link');
+    const body = document.body;
+
+    function openMobileMenu() {
+        mobileMenuOverlay.classList.add('active');
+        body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+        mobileMenuOverlay.classList.remove('active');
+        body.style.overflow = '';
+    }
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    // Close overlay if clicking outside content (optional, not needed for full overlay)
+    mobileMenuOverlay.addEventListener('click', function(e) {
+        if (e.target === mobileMenuOverlay) {
+            closeMobileMenu();
+        }
+    });
+
+    // Forward mobile auth button clicks to main auth logic
+    const mobileGoogleBtn = document.getElementById('mobile-google-auth-btn');
+    const mobileSignupBtn = document.getElementById('mobile-signup-btn');
+    const mobileLoginBtn = document.getElementById('mobile-login-btn');
+    const googleBtn = document.getElementById('google-auth-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const loginBtn = document.getElementById('login-btn');
+
+    if (mobileGoogleBtn && googleBtn) {
+        mobileGoogleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeMobileMenu();
+            googleBtn.click();
+        });
+    }
+    if (mobileSignupBtn && signupBtn) {
+        mobileSignupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeMobileMenu();
+            signupBtn.click();
+        });
+    }
+    if (mobileLoginBtn && loginBtn) {
+        mobileLoginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeMobileMenu();
+            loginBtn.click();
+        });
+    }
 });
 
 // Add CSS for confetti animation
